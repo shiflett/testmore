@@ -23,6 +23,8 @@
 		'woo' => 'yay',
 	);
 
+	echo "1..32\n";
+
 
 	#
 	# these should pass
