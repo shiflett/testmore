@@ -41,6 +41,13 @@ This is a PHP implementation of <a href="http://search.cpan.org/perldoc?Test::Mo
     fail($test_name);
 
 
+## Testing the tests
+
+If you have perl's <a href="http://search.cpan.org/dist/Test-Harness/">Test::Harness</a> installed (you almost certainly do), you can run the tests using:
+
+    prove --exec 'php' test/test.php
+
+
 ## Credits
 
 Originally inspired by work from Andy Lester. Written and  maintained by Chris Shiflett.
