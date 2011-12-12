@@ -9,6 +9,20 @@
 
 	$test_obj = new TestClass();
 
+	$struct_1 = array(
+		1 => array(
+			'foo' => 'bar',
+		),
+		'woo' => 'yay',
+	);
+
+	$struct_2 = array(
+		1 => array(
+			'foo' => 'baz',
+		),
+		'woo' => 'yay',
+	);
+
 
 	#
 	# these should pass
@@ -61,6 +75,9 @@
 	require_ok($dir.'/inc_true.php');
 	check_capture(true);
 
+	is_deeply($struct_1, $struct_1, 'is_deeply()');
+	check_capture(true);
+
 
 	#
 	# Expecting these to fail
@@ -109,6 +126,9 @@
 	check_capture(false);
 
 	require_ok($dir.'/inc_false.php');
+	check_capture(false);
+
+	is_deeply($struct_1, $struct_2, 'is_deeply()');
 	check_capture(false);
 
 

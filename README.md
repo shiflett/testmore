@@ -30,6 +30,8 @@ This is a PHP implementation of <a href="http://search.cpan.org/perldoc?Test::Mo
 
     cmp_ok($got, '==', $expected, $test_name);
 
+    is_deeply($got_complex_structure, $expected_complex_structure, $test_name);
+
     skip($why, $how_many);
 
     can_ok($module, $methods);
