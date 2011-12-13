@@ -290,6 +290,15 @@ function skip($message, $num)
     $_num_skips = $num;
 }
 
+function is_deeply($got_struct, $expected_struct, $test_name = '')
+{
+    $got_flat = var_export($got_struct, true);
+    $expected_flat = var_export($expected_struct, true);
+
+    is($got_flat, $expected_flat, $test_name);
+}
+
+
 /*
 
 TODO:
@@ -299,10 +308,6 @@ function todo()
 }
 
 function todo_skip()
-{
-}
-
-function is_deeply()
 {
 }
 
