@@ -266,13 +266,13 @@ function diag($message)
 function include_ok($module)
 {
     $pass = ((include $module) == 1);
-    return ok($pass);
+    return ok($pass, "include $module");
 }
 
 function require_ok($module)
 {
     $pass = ((require $module) == 1);
-    return ok($pass);
+    return ok($pass, "require $module");
 } 
 
 function skip($message, $num)
