@@ -40,6 +40,19 @@ This is a PHP implementation of <a href="http://search.cpan.org/perldoc?Test::Mo
     pass($test_name);
     fail($test_name);
 
+    todo_begin("New frobaz feature");
+
+    ok( $got, $expected, $test_name );
+    # ...
+
+    todo_end();
+
+    # Or under 5.3
+    todo( "New frobaz feature", function () {
+        ok( $got, $expected, $test_name );
+        # ...
+    } );
+
 
 ## Testing the tests
 

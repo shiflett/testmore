@@ -79,11 +79,34 @@ function plan($plan)
     }
 }
 
+function todo($why, $todo_tests) {
+    todo_begin($why);
+    call_user_func($todo_tests);
+    todo_end();
+}
+
+function todo_begin($why="")
+{
+    global $_testmore_todo;
+    if ( ! isset($_testmore_todo) ) {
+        $_testmore_todo = array();
+    }
+    array_push($_testmore_todo,$why);
+}
+
+function todo_end()
+{
+    global $_testmore_todo;
+    assert('is_array($_testmore_todo)');
+    array_pop($_testmore_todo);
+}
+
 function ok($pass, $test_name = '')
 {
     global $_test_num;
     global $_num_failures;
     global $_num_skips;
+    global $_testmore_todo;
 
     $_test_num++; 
 
@@ -94,6 +117,11 @@ function ok($pass, $test_name = '')
 
     if (!empty($test_name) && $test_name[0] != '#') {
         $test_name = "- $test_name";
+    }
+    
+    if ($test_name[0] != '#' and isset($_testmore_todo) and count($_testmore_todo)) {
+        $msg = array_pop( array_values( $_testmore_todo ) );
+        $test_name .= " # TODO $msg";
     }
 
     if ($pass) {
@@ -302,10 +330,6 @@ function is_deeply($got_struct, $expected_struct, $test_name = '')
 /*
 
 TODO:
-
-function todo()
-{
-}
 
 function todo_skip()
 {

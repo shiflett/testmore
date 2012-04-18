@@ -23,7 +23,7 @@
 		'woo' => 'yay',
 	);
 
-	echo "1..32\n";
+	echo "1..36\n";
 
 
 	#
@@ -80,6 +80,20 @@
 	is_deeply($struct_1, $struct_1, 'is_deeply()');
 	check_capture(true);
 
+	todo_begin("Testing");
+
+	pass("example implemented todo test");
+	check_capture(true);
+
+	todo_end();
+
+        // in 5.3 we would pass an anonymous function
+	function ex_todo_pass() {
+		pass("example todo in subroutine");
+	}
+	todo( "Testing", "ex_todo_pass" );
+	check_capture(true);
+
 
 	#
 	# Expecting these to fail
@@ -133,7 +147,21 @@
 	is_deeply($struct_1, $struct_2, 'is_deeply()');
 	check_capture(false);
 
+	todo_begin("Testing");
 
+	fail("example unimplemented todo test");
+	check_capture(false);
+
+	todo_end();
+
+        // in 5.3 we would pass an anonymous function
+	function ex_todo_fail() {
+		fail("example fail in subroutine");
+	}
+	todo( "Testing", "ex_todo_fail" );
+	check_capture(false);
+
+	
 	$GLOBALS['_no_plan'] = false;
 	$GLOBALS['_num_failures'] = 0;
 
@@ -182,6 +210,7 @@
 
 		$result = array_pop($results);
 		$explain = $result[1] ? " - $result[1]" : '';
+		$explain = preg_replace('!#!','\\#',$explain); # Escape comments, eg, TODOs
 		if ($pass){
 			if ($result[0]){
 				echo "ok $num - pass$explain\n";
