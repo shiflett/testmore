@@ -1,9 +1,11 @@
-# testmore - Test::More for PHP
+Test::More for PHP
+==================
 
-This is a PHP implementation of <a href="http://search.cpan.org/perldoc?Test::More">Test::More</a>.
+This is a <a href="http://testanything.org/">TAP</a>-compliant PHP testing
+library based on <a href="http://search.cpan.org/perldoc?Test::More">Test::More</a>.
 
-
-## Usage
+Usage
+-----
 
     plan('no_plan');
     # or
@@ -19,13 +21,13 @@ This is a PHP implementation of <a href="http://search.cpan.org/perldoc?Test::Mo
     # Various ways to say "ok"
     ok($got == $expected, $test_name);
 
-    is  ($got, $expected, $test_name);
+    is($got, $expected, $test_name);
     isnt($got, $expected, $test_name);
 
     # Rather than echo "# here's what went wrong\n"
     diag("here's what went wrong");
 
-    like  ($got, '/expected/', $test_name);
+    like($got, '/expected/', $test_name);
     unlike($got, '/expected/', $test_name);
 
     cmp_ok($got, '==', $expected, $test_name);
@@ -42,7 +44,7 @@ This is a PHP implementation of <a href="http://search.cpan.org/perldoc?Test::Mo
 
     todo_begin("New frobaz feature");
 
-    ok( $got, $expected, $test_name );
+    ok($got, $expected, $test_name);
     # ...
 
     todo_end();
@@ -51,17 +53,17 @@ This is a PHP implementation of <a href="http://search.cpan.org/perldoc?Test::Mo
     todo( "New frobaz feature", function () {
         ok( $got, $expected, $test_name );
         # ...
-    } );
+    });
 
+Testing the tests
+-----------------
 
-## Testing the tests
-
-If you have perl's <a href="http://search.cpan.org/dist/Test-Harness/">Test::Harness</a> installed (you almost certainly do), you can run the tests using:
+If you have Perl's <a href="http://search.cpan.org/dist/Test-Harness/">Test::Harness</a> installed (you almost certainly do), you can run the tests using:
 
     prove --exec 'php' test/test.php
 
-
-## Credits
+Credits
+-------
 
 Originally inspired by work from Andy Lester. Written and  maintained by Chris Shiflett.
 
