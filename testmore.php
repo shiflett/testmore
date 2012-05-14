@@ -85,13 +85,13 @@ function todo($why, $todo_tests) {
     todo_end();
 }
 
-function todo_begin($why="")
+function todo_begin($why = '')
 {
     global $_testmore_todo;
-    if ( ! isset($_testmore_todo) ) {
+    if (! isset($_testmore_todo)) {
         $_testmore_todo = array();
     }
-    array_push($_testmore_todo,$why);
+    array_push($_testmore_todo, $why);
 }
 
 function todo_end()
@@ -325,29 +325,6 @@ function is_deeply($got_struct, $expected_struct, $test_name = '')
 
     is($got_flat, $expected_flat, $test_name);
 }
-
-
-/*
-
-TODO:
-
-function todo_skip()
-{
-}
-
-function eq_array()
-{
-}
-
-function eq_hash()
-{
-}
-
-function eq_set()
-{
-}
-
-*/
 
 function _test_end()
 {
