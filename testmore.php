@@ -119,7 +119,7 @@ function ok($pass, $test_name = '')
         $test_name = "- $test_name";
     }
     
-    if ($test_name[0] != '#' and isset($_testmore_todo) and count($_testmore_todo)) {
+    if (substr($test_name, 0, 1) != '#' and isset($_testmore_todo) and count($_testmore_todo)) {
         $msg = array_pop( array_values( $_testmore_todo ) );
         $test_name .= " # TODO $msg";
     }
